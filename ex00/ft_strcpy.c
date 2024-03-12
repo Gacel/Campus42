@@ -5,15 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvalle-d <jvalle-d@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 12:29:40 by jvalle-d          #+#    #+#             */
-/*   Updated: 2024/03/10 12:34:38 by jvalle-d         ###   ########.fr       */
+/*   Created: 2024/03/12 12:37:49 by jvalle-d          #+#    #+#             */
+/*   Updated: 2024/03/12 12:37:55 by jvalle-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
 char	*ft_strcpy(char *dest, char *src)
 {
-	strcpy(dest, src);
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
 }

@@ -5,77 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvalle-d <jvalle-d@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 17:58:27 by jvalle-d          #+#    #+#             */
-/*   Updated: 2024/03/11 19:30:21 by jvalle-d         ###   ########.fr       */
+/*   Created: 2024/03/12 12:18:21 by jvalle-d          #+#    #+#             */
+/*   Updated: 2024/03/12 12:52:59 by jvalle-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*low_letter(char *str)
+void	capitalize_next(char *str)
 {
+	int	activador;
 	int	i;
 
+	activador = 1;
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
+		if (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')
+			|| (str[i] < 'A' || (str[i] > 'Z' && str[i] < 'a') || str[i] > 'z'))
 		{
-			str[i] = str[i] + 32;
+			activador = 1;
 		}
-		i++;
-	}
-	return (str);
-}
-
-char	*first_letter(char *str)
-{
-	int	i;
-
-	i = 0;
-	low_letter(str);
-	while (str[i] != '\0')
-	{
-		if (str[i] == str[0])
-			str[i] = str[i] - 32;
-		i++;
-	}
-	return (str);
-}
-
-char	*ft_str_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	first_letter(str);
-	while (str[i] != '\0')
-	{
-		if (str[i] == ' ')
+		else if (activador)
 		{
-			i++;
 			if (str[i] >= 'a' && str[i] <= 'z')
-				str[i] = str[i] - 32;
+			{
+				str[i] -= 32;
+			}
+			activador = 0;
 		}
 		i++;
 	}
-	return (str);
 }
 
 char	*ft_strcapitalize(char *str)
 {
-	int	i;
-
-	i = 0;
-	ft_str_space(str);
-	while (str[i] != '\0')
-	{
-		if ((str[i] == ';') || (str[i] == ',') || ((str[i] == '.'))
-			|| (str[i] == '+') || (str[i] == '-') || (str[i] == ':'))
-		{
-			i++;
-			if (str[i] >= 'a' && str[i] <= 'z')
-				str[i] = str[i] - 32;
-		}
-		i++;
-	}
+	capitalize_next(str);
 	return (str);
 }
+/*#include <stdio.h>
+
+int	main(void)
+{
+	char input[] = "Salut, Comment Tu Vas ? 42mots Quarante-Deux;";
+
+	printf("Original: %s\n", input);
+
+	ft_strcapitalize(input);
+
+	printf("Capitalized: %s\n", input);
+
+	return (0);
+}
+*/
